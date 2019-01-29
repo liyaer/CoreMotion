@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043E8F5821FAA0920018C2CB /* MainMotionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E8F5721FAA0920018C2CB /* MainMotionVC.m */; };
+		043E8F6121FABF930018C2CB /* SantaClaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 043E8F6021FABF930018C2CB /* SantaClaus.png */; };
+		0452E9E721F80EB600769FF0 /* 角速度坐标轴示意图.png in Resources */ = {isa = PBXBuildFile; fileRef = 0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */; };
+		0452E9E921F80EBB00769FF0 /* 加速度坐标轴示意图.png in Resources */ = {isa = PBXBuildFile; fileRef = 0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */; };
+		0452E9EC21F86BB200769FF0 /* LightSensorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0452E9EB21F86BB200769FF0 /* LightSensorVC.m */; };
 		0492430F21F7193100BE515F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492430E21F7193100BE515F /* AppDelegate.m */; };
-		0492431221F7193100BE515F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492431121F7193100BE515F /* ViewController.m */; };
+		0492431221F7193100BE515F /* AccelerationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492431121F7193100BE515F /* AccelerationVC.m */; };
 		0492431521F7193200BE515F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0492431321F7193200BE515F /* Main.storyboard */; };
 		0492431721F7194200BE515F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492431621F7194200BE515F /* Assets.xcassets */; };
 		0492431A21F7194200BE515F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0492431821F7194200BE515F /* LaunchScreen.storyboard */; };
 		0492431D21F7194200BE515F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492431C21F7194200BE515F /* main.m */; };
 		0492432721F7194200BE515F /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492432621F7194200BE515F /* ___Tests.m */; };
 		0492433221F7194200BE515F /* ___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492433121F7194200BE515F /* ___UITests.m */; };
+		049954E421F95F660030CD00 /* DistanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049954E321F95F660030CD00 /* DistanceVC.m */; };
+		049954E721F98F110030CD00 /* StepCountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049954E621F98F110030CD00 /* StepCountVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +42,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043E8F5621FAA0920018C2CB /* MainMotionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMotionVC.h; sourceTree = "<group>"; };
+		043E8F5721FAA0920018C2CB /* MainMotionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMotionVC.m; sourceTree = "<group>"; };
+		043E8F6021FABF930018C2CB /* SantaClaus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SantaClaus.png; sourceTree = "<group>"; };
+		0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "角速度坐标轴示意图.png"; sourceTree = "<group>"; };
+		0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加速度坐标轴示意图.png"; sourceTree = "<group>"; };
+		0452E9EA21F86BB200769FF0 /* LightSensorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightSensorVC.h; sourceTree = "<group>"; };
+		0452E9EB21F86BB200769FF0 /* LightSensorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightSensorVC.m; sourceTree = "<group>"; };
 		0492430A21F7193100BE515F /* 传感器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "传感器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0492430D21F7193100BE515F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0492430E21F7193100BE515F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0492431021F7193100BE515F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0492431121F7193100BE515F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0492431021F7193100BE515F /* AccelerationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccelerationVC.h; sourceTree = "<group>"; };
+		0492431121F7193100BE515F /* AccelerationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccelerationVC.m; sourceTree = "<group>"; };
 		0492431421F7193200BE515F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0492431621F7194200BE515F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0492431921F7194200BE515F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +65,10 @@
 		0492432D21F7194200BE515F /* 传感器UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "传感器UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0492433121F7194200BE515F /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
 		0492433321F7194200BE515F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049954E221F95F660030CD00 /* DistanceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistanceVC.h; sourceTree = "<group>"; };
+		049954E321F95F660030CD00 /* DistanceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistanceVC.m; sourceTree = "<group>"; };
+		049954E521F98F110030CD00 /* StepCountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepCountVC.h; sourceTree = "<group>"; };
+		049954E621F98F110030CD00 /* StepCountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepCountVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +96,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043E8F5921FAA1EB0018C2CB /* 距离传感器 */ = {
+			isa = PBXGroup;
+			children = (
+				049954E221F95F660030CD00 /* DistanceVC.h */,
+				049954E321F95F660030CD00 /* DistanceVC.m */,
+			);
+			path = "距离传感器";
+			sourceTree = "<group>";
+		};
+		043E8F5A21FAA1FF0018C2CB /* 光线传感器 */ = {
+			isa = PBXGroup;
+			children = (
+				0452E9EA21F86BB200769FF0 /* LightSensorVC.h */,
+				0452E9EB21F86BB200769FF0 /* LightSensorVC.m */,
+			);
+			path = "光线传感器";
+			sourceTree = "<group>";
+		};
+		043E8F5B21FAA28C0018C2CB /* 计步器 */ = {
+			isa = PBXGroup;
+			children = (
+				049954E521F98F110030CD00 /* StepCountVC.h */,
+				049954E621F98F110030CD00 /* StepCountVC.m */,
+			);
+			path = "计步器";
+			sourceTree = "<group>";
+		};
+		043E8F5C21FAA2B20018C2CB /* 加速计 | 陀螺仪 | 磁力计 */ = {
+			isa = PBXGroup;
+			children = (
+				0492431021F7193100BE515F /* AccelerationVC.h */,
+				0492431121F7193100BE515F /* AccelerationVC.m */,
+				043E8F6021FABF930018C2CB /* SantaClaus.png */,
+				043E8F5621FAA0920018C2CB /* MainMotionVC.h */,
+				043E8F5721FAA0920018C2CB /* MainMotionVC.m */,
+			);
+			path = "加速计 | 陀螺仪 | 磁力计";
+			sourceTree = "<group>";
+		};
+		0452E9E521F7F6FE00769FF0 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				0492430D21F7193100BE515F /* AppDelegate.h */,
+				0492430E21F7193100BE515F /* AppDelegate.m */,
+				0492431621F7194200BE515F /* Assets.xcassets */,
+				0492431821F7194200BE515F /* LaunchScreen.storyboard */,
+				0492431C21F7194200BE515F /* main.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		0492430121F7193100BE515F = {
 			isa = PBXGroup;
 			children = (
@@ -101,15 +170,15 @@
 		0492430C21F7193100BE515F /* 传感器 */ = {
 			isa = PBXGroup;
 			children = (
-				0492430D21F7193100BE515F /* AppDelegate.h */,
-				0492430E21F7193100BE515F /* AppDelegate.m */,
-				0492431021F7193100BE515F /* ViewController.h */,
-				0492431121F7193100BE515F /* ViewController.m */,
 				0492431321F7193200BE515F /* Main.storyboard */,
-				0492431621F7194200BE515F /* Assets.xcassets */,
-				0492431821F7194200BE515F /* LaunchScreen.storyboard */,
+				043E8F5921FAA1EB0018C2CB /* 距离传感器 */,
+				043E8F5A21FAA1FF0018C2CB /* 光线传感器 */,
+				043E8F5B21FAA28C0018C2CB /* 计步器 */,
+				043E8F5C21FAA2B20018C2CB /* 加速计 | 陀螺仪 | 磁力计 */,
 				0492431B21F7194200BE515F /* Info.plist */,
-				0492431C21F7194200BE515F /* main.m */,
+				0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */,
+				0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */,
+				0452E9E521F7F6FE00769FF0 /* Others */,
 			);
 			path = "传感器";
 			sourceTree = "<group>";
@@ -235,9 +304,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043E8F6121FABF930018C2CB /* SantaClaus.png in Resources */,
 				0492431A21F7194200BE515F /* LaunchScreen.storyboard in Resources */,
+				0452E9E721F80EB600769FF0 /* 角速度坐标轴示意图.png in Resources */,
 				0492431721F7194200BE515F /* Assets.xcassets in Resources */,
 				0492431521F7193200BE515F /* Main.storyboard in Resources */,
+				0452E9E921F80EBB00769FF0 /* 加速度坐标轴示意图.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +334,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0492431221F7193100BE515F /* ViewController.m in Sources */,
+				049954E421F95F660030CD00 /* DistanceVC.m in Sources */,
+				0492431221F7193100BE515F /* AccelerationVC.m in Sources */,
+				049954E721F98F110030CD00 /* StepCountVC.m in Sources */,
+				0452E9EC21F86BB200769FF0 /* LightSensorVC.m in Sources */,
 				0492431D21F7194200BE515F /* main.m in Sources */,
 				0492430F21F7193100BE515F /* AppDelegate.m in Sources */,
+				043E8F5821FAA0920018C2CB /* MainMotionVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +512,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8MCBLL5HW5;
 				INFOPLIST_FILE = "传感器/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +530,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8MCBLL5HW5;
 				INFOPLIST_FILE = "传感器/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

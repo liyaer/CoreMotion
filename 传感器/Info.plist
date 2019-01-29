@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>摄像头借我使使</string>
+	<key>NSMotionUsageDescription</key>
+	<string>App需要您的同意,才能访问运动与健身</string>
 </dict>
 </plist>
