@@ -36,6 +36,7 @@
         _motionManage.accelerometerUpdateInterval = 0.2;
         _motionManage.gyroUpdateInterval = 0.5;
         _motionManage.magnetometerUpdateInterval = 0.5;
+        
         _motionManage.deviceMotionUpdateInterval = 0.2;
     }
     return _motionManage;
@@ -51,13 +52,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+#warning 测试以下任一效果时，请将其他注释掉
 //    [self accelerometerTest];
-//    [self gyroTest];
+    [self gyroTest];
 //    [self magnetometerTest];
-    [self deviceMotionTest];
+    
+//    [self deviceMotionTest];
 }
 
-//加速计
+//加速计（deviceMotionTest中重力加速度和用户施加的加速度分开了，这里是在一起的，手机在水平桌面移动，X,Y轴数据会变化）
 -(void)accelerometerTest
 {
     // 可用性检测
@@ -164,27 +167,62 @@
     
     if (![self.motionManage isDeviceMotionActive])
     {
+        __weak typeof (self) weakSelf = self;
         // 获取的数据综合了加速计、陀螺仪、磁力计
         [self.motionManage startDeviceMotionUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error)
          {
-            // 数据处理
+             /*
+                 设备当前的空间方位(包含下面三个欧拉角的值，手机正面朝上放置在水平的桌面上时，三个值都是0)
+                    roll：手机绕 Y 轴旋转的角度值,逆时针绕一周取值依次是：0 -> π/2 -> π（-π）-> -π/2 -> 0
+                    pitch：.....X..............................：0 -> π/2 -> 0 -> -π/2 -> 0
+                    yaw：.......Z..............................：0 -> π/2 -> π（-π）-> -π/2 -> 0
+              */
              CMAttitude *attitude =  motion.attitude;
-             CMRotationRate rotationRate = motion.rotationRate;//陀螺仪旋转速率
+             
+             //陀螺仪
+             CMRotationRate rotationRate = motion.rotationRate;
+             
+             /*
+                  CMCalibratedMagneticField结构体变量, 包括field和accuracy两个字段, 其中field代表X,Y,Z轴上的磁场强度, accuracy则代表磁场强度的精度
+              */
              CMCalibratedMagneticField magnet = motion.magneticField;
+             
+             //地球重力对该设备在X,Y,Z轴上施加的重力加速度
              CMAcceleration gravity = motion.gravity;
+             
+             //用户外力对该设备在X,Y,Z轴上施加的重力加速度
              CMAcceleration userAcceleration = motion.userAcceleration;
              
-             if (userAcceleration.x < -0.5)
+             
+             dispatch_async(dispatch_get_main_queue(), ^
              {
-                 dispatch_async(dispatch_get_main_queue(), ^
+#warning 测试以下任一效果时，请将其他注释掉
+//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"roll(绕Y)：%.4f", attitude.roll];
+//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"pitch(绕X)：%.4f", attitude.pitch];
+//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"yaw(绕Z)：%.4f", attitude.yaw];
+                 
+//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"绕X轴旋转的角速度：%.4f", rotationRate.x];
+//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"绕Y轴旋转的角速度：%.4f", rotationRate.y];
+//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"绕Z轴旋转的角速度：%.4f", rotationRate.z];
+                 
+                 //这一组没有数据，为啥？
+                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X方向磁力：%.2f", magnet.field.x];
+                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y方向磁力：%.2f", magnet.field.y];
+                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z方向磁力：%.2f", magnet.field.z];
+                 NSLog(@"磁力精确度：%d",magnet.accuracy);
+                 
+//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X轴重力加速度：%.2f", gravity.x];
+//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y轴重力加速度：%.2f", gravity.y];
+//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z轴重力加速度：%.2f", gravity.z];
+                 
+                 if (userAcceleration.x < -0.5)
                  {
-                     [self.navigationController popViewControllerAnimated:YES];
-                 });
-             }
+                     [weakSelf.navigationController popViewControllerAnimated:YES];
+                 }
+             });
         }];
     }
 }
-
 
 
 
@@ -209,6 +247,7 @@
     [self.motionManage stopAccelerometerUpdates];
     [self.motionManage stopMagnetometerUpdates];
     [self.motionManage stopGyroUpdates];
+    
     [self.motionManage stopDeviceMotionUpdates];
     
     NSLog(@"%@ 释放",[self class]);

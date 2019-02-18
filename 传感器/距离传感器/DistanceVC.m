@@ -32,7 +32,6 @@
                                              selector:@selector(proximityChange:)
                                                  name:UIDeviceProximityStateDidChangeNotification
                                                object:nil];
-
 }
 
 - (void)proximityChange:(NSNotification *)notification

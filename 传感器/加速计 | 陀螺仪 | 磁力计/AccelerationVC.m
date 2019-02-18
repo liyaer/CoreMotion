@@ -17,7 +17,9 @@
  */
 
 @interface AccelerationVC ()
-
+{
+    NSTimer *_updateTimer;
+}
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (weak, nonatomic) IBOutlet UIView *ball;
 
@@ -52,40 +54,60 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    //设置更新频率
-    self.motionManger.accelerometerUpdateInterval = 1;
-    
-    //按更新频率从硬件读取值
+    //写法一：主动获取（pull）--- MainMotionVC中的四个例子也都有这两种写法，但写法一略显繁琐，而且要考虑定时器的释放问题，因此都用了写法二
     if (self.motionManger.isAccelerometerAvailable)
     {
         if (!self.motionManger.isAccelerometerActive)
         {
-            //在主队列启动，block回调也在主线程（MainMotionVC中是在非主队列启动，因此block回调在子线程，刷新UI需要切换到主线程）
-            __weak typeof(self) weakSelf = self;
-            [self.motionManger startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error)
+            [self.motionManger startAccelerometerUpdates];
+
+            _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 repeats:YES block:^(NSTimer * _Nonnull timer)
             {
-                [weakSelf setData:accelerometerData];
+                [self setData:self.motionManger.accelerometerData];
             }];
         }
     }
     
-    //动画
-    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-
-    self.grayityBehavior = [[UIGravityBehavior alloc] init];
-    [self.grayityBehavior addItem:self.ball];
-    self.grayityBehavior.gravityDirection = CGVectorMake(0, 0);
-    [self.animator addBehavior:self.grayityBehavior];
-
-    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.ball]];
-    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-    [self.animator addBehavior:self.collisionBehavior];
+    //写法二：基于代码块获取（push）
+//    //设置更新频率
+//    self.motionManger.accelerometerUpdateInterval = 1;
+//
+//    //按更新频率从硬件读取值
+//    if (self.motionManger.isAccelerometerAvailable)
+//    {
+//        if (!self.motionManger.isAccelerometerActive)
+//        {
+//            //在主队列启动，block回调也在主线程（MainMotionVC中是在非主队列启动，因此block回调在子线程，刷新UI需要切换到主线程）
+//            __weak typeof(self) weakSelf = self;
+//            [self.motionManger startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error)
+//            {
+//                [weakSelf setData:accelerometerData];
+//            }];
+//        }
+//    }
+    
+    [self initAnimation];
 }
 
 
 
 
 #pragma mark - 封装方法调用集合
+
+//动画
+-(void)initAnimation
+{
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    self.grayityBehavior = [[UIGravityBehavior alloc] init];
+    [self.grayityBehavior addItem:self.ball];
+    self.grayityBehavior.gravityDirection = CGVectorMake(0, 0);
+    [self.animator addBehavior:self.grayityBehavior];
+    
+    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.ball]];
+    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    [self.animator addBehavior:self.collisionBehavior];
+}
 
 -(void)setData:(CMAccelerometerData *)data
 {
@@ -127,6 +149,11 @@
     [super viewWillDisappear:animated];
     
 //    [self.motionManger stopAccelerometerUpdates];
+    
+    if (_updateTimer && [_updateTimer isValid])
+    {
+        [_updateTimer invalidate];
+    }
 }
 
 -(void)dealloc
