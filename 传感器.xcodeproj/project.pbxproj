@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0436284C221FD782000B35FB /* BarometerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436284B221FD782000B35FB /* BarometerVC.m */; };
 		043E8F5821FAA0920018C2CB /* MainMotionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E8F5721FAA0920018C2CB /* MainMotionVC.m */; };
 		043E8F6121FABF930018C2CB /* SantaClaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 043E8F6021FABF930018C2CB /* SantaClaus.png */; };
+		0449F4BB221A465B007E5BF9 /* TouchIDVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449F4BA221A465B007E5BF9 /* TouchIDVC.m */; };
 		0452E9E721F80EB600769FF0 /* 角速度坐标轴示意图.png in Resources */ = {isa = PBXBuildFile; fileRef = 0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */; };
 		0452E9E921F80EBB00769FF0 /* 加速度坐标轴示意图.png in Resources */ = {isa = PBXBuildFile; fileRef = 0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */; };
 		0452E9EC21F86BB200769FF0 /* LightSensorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0452E9EB21F86BB200769FF0 /* LightSensorVC.m */; };
@@ -42,9 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0436284A221FD782000B35FB /* BarometerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarometerVC.h; sourceTree = "<group>"; };
+		0436284B221FD782000B35FB /* BarometerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarometerVC.m; sourceTree = "<group>"; };
 		043E8F5621FAA0920018C2CB /* MainMotionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMotionVC.h; sourceTree = "<group>"; };
 		043E8F5721FAA0920018C2CB /* MainMotionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMotionVC.m; sourceTree = "<group>"; };
 		043E8F6021FABF930018C2CB /* SantaClaus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SantaClaus.png; sourceTree = "<group>"; };
+		0449F4B9221A465B007E5BF9 /* TouchIDVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchIDVC.h; sourceTree = "<group>"; };
+		0449F4BA221A465B007E5BF9 /* TouchIDVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchIDVC.m; sourceTree = "<group>"; };
 		0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "角速度坐标轴示意图.png"; sourceTree = "<group>"; };
 		0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加速度坐标轴示意图.png"; sourceTree = "<group>"; };
 		0452E9EA21F86BB200769FF0 /* LightSensorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightSensorVC.h; sourceTree = "<group>"; };
@@ -96,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04362849221FD747000B35FB /* 气压计 */ = {
+			isa = PBXGroup;
+			children = (
+				0436284A221FD782000B35FB /* BarometerVC.h */,
+				0436284B221FD782000B35FB /* BarometerVC.m */,
+			);
+			path = "气压计";
+			sourceTree = "<group>";
+		};
 		043E8F5921FAA1EB0018C2CB /* 距离传感器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +146,19 @@
 				043E8F6021FABF930018C2CB /* SantaClaus.png */,
 				043E8F5621FAA0920018C2CB /* MainMotionVC.h */,
 				043E8F5721FAA0920018C2CB /* MainMotionVC.m */,
+				0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */,
+				0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */,
 			);
 			path = "加速计 | 陀螺仪 | 磁力计";
+			sourceTree = "<group>";
+		};
+		0449F4B8221A4612007E5BF9 /* 指纹传感器 */ = {
+			isa = PBXGroup;
+			children = (
+				0449F4B9221A465B007E5BF9 /* TouchIDVC.h */,
+				0449F4BA221A465B007E5BF9 /* TouchIDVC.m */,
+			);
+			path = "指纹传感器";
 			sourceTree = "<group>";
 		};
 		0452E9E521F7F6FE00769FF0 /* Others */ = {
@@ -175,8 +201,8 @@
 				043E8F5A21FAA1FF0018C2CB /* 光线传感器 */,
 				043E8F5B21FAA28C0018C2CB /* 计步器 */,
 				043E8F5C21FAA2B20018C2CB /* 加速计 | 陀螺仪 | 磁力计 */,
-				0452E9E821F80EBB00769FF0 /* 加速度坐标轴示意图.png */,
-				0452E9E621F80EB600769FF0 /* 角速度坐标轴示意图.png */,
+				0449F4B8221A4612007E5BF9 /* 指纹传感器 */,
+				04362849221FD747000B35FB /* 气压计 */,
 				0492431B21F7194200BE515F /* Info.plist */,
 				0452E9E521F7F6FE00769FF0 /* Others */,
 			);
@@ -335,12 +361,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				049954E421F95F660030CD00 /* DistanceVC.m in Sources */,
+				0436284C221FD782000B35FB /* BarometerVC.m in Sources */,
 				0492431221F7193100BE515F /* AccelerationVC.m in Sources */,
 				049954E721F98F110030CD00 /* StepCountVC.m in Sources */,
 				0452E9EC21F86BB200769FF0 /* LightSensorVC.m in Sources */,
 				0492431D21F7194200BE515F /* main.m in Sources */,
 				0492430F21F7193100BE515F /* AppDelegate.m in Sources */,
 				043E8F5821FAA0920018C2CB /* MainMotionVC.m in Sources */,
+				0449F4BB221A465B007E5BF9 /* TouchIDVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

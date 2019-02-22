@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *accelerationZLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *santaClausImgV;
 
+//应用程序应该只创建CMMotionManager类的一个实例。这个类的多实例会影响从加速计和陀螺仪接收数据的速率。（意思就是多个地方使用时，创建单例）
 @property (nonatomic, strong) CMMotionManager   *motionManage;
 
 @end
@@ -73,28 +74,35 @@
     __weak typeof (self) weakSelf = self;
     [self.motionManage startAccelerometerUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error)
      {
-         // 回到主线程
-         dispatch_async(dispatch_get_main_queue(), ^
-            {
-                weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X轴加速度：%.2f", accelerometerData.acceleration.x];
-                weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y轴加速度：%.2f", accelerometerData.acceleration.y];
-                weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z轴加速度：%.2f", accelerometerData.acceleration.z];
-                
-                //模拟人所受的重力
-                [UIView animateWithDuration:0.02 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction animations:^
-                 {
-                     CGFloat x = accelerometerData.acceleration.x;
-                     CGFloat y = accelerometerData.acceleration.y;
-                     if(y<0)
+         if (error)
+         {
+             [weakSelf.motionManage stopAccelerometerUpdates];
+         }
+         else
+         {
+             // 回到主线程
+             dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X轴加速度：%.2f", accelerometerData.acceleration.x];
+                    weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y轴加速度：%.2f", accelerometerData.acceleration.y];
+                    weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z轴加速度：%.2f", accelerometerData.acceleration.z];
+                    
+                    //模拟人所受的重力
+                    [UIView animateWithDuration:0.02 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction animations:^
                      {
-                         weakSelf.santaClausImgV.transform = CGAffineTransformMakeRotation(-x*M_PI_2);
-                     }
-                     else
-                     {
-                         weakSelf.santaClausImgV.transform = CGAffineTransformMakeRotation(-M_PI_2-(1-x)*M_PI_2);
-                     }
-                 } completion:nil];
-            });
+                         CGFloat x = accelerometerData.acceleration.x;
+                         CGFloat y = accelerometerData.acceleration.y;
+                         if(y<0)
+                         {
+                             weakSelf.santaClausImgV.transform = CGAffineTransformMakeRotation(-x*M_PI_2);
+                         }
+                         else
+                         {
+                             weakSelf.santaClausImgV.transform = CGAffineTransformMakeRotation(-M_PI_2-(1-x)*M_PI_2);
+                         }
+                     } completion:nil];
+                });
+         }
      }];
 }
 
@@ -112,18 +120,25 @@
         __weak typeof (self) weakSelf = self;
         [self.motionManage startGyroUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMGyroData * _Nullable gyroData, NSError * _Nullable error)
         {
-            CGFloat x = gyroData.rotationRate.x;
-            CGFloat y = gyroData.rotationRate.y;
-            CGFloat z = gyroData.rotationRate.z;
-            CGFloat rate = sqrt(x*x + y*y + z*z);
-            // 回到主线程
-            dispatch_async(dispatch_get_main_queue(), ^
+            if (error)
             {
-                weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"绕X轴旋转的角速度：%.2f", x];
-                weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"绕Y轴旋转的角速度：%.2f", y];
-                weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"绕Z轴旋转的角速度：%.2f", z];
-                NSLog(@"%@",[NSString stringWithFormat:@"%.2f", rate]);
-            });
+                [weakSelf.motionManage stopGyroUpdates];
+            }
+            else
+            {
+                CGFloat x = gyroData.rotationRate.x;
+                CGFloat y = gyroData.rotationRate.y;
+                CGFloat z = gyroData.rotationRate.z;
+                CGFloat rate = sqrt(x*x + y*y + z*z);
+                // 回到主线程
+                dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"绕X轴旋转的角速度：%.2f", x];
+                    weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"绕Y轴旋转的角速度：%.2f", y];
+                    weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"绕Z轴旋转的角速度：%.2f", z];
+                    NSLog(@"%@",[NSString stringWithFormat:@"%.2f", rate]);
+                });
+            }
         }];
     }
 }
@@ -141,17 +156,24 @@
         __weak typeof (self) weakSelf = self;
         [self.motionManage startMagnetometerUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMMagnetometerData * _Nullable magnetometerData, NSError * _Nullable error)
          {
-             CGFloat x = magnetometerData.magneticField.x;
-             CGFloat y = magnetometerData.magneticField.y;
-             CGFloat z = magnetometerData.magneticField.z;
-             
-             // 回到主线程
-             dispatch_async(dispatch_get_main_queue(), ^
-                {
-                    weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X方向磁力：%.2f", x];
-                    weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y方向磁力：%.2f", y];
-                    weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z方向磁力：%.2f", z];
-                });
+             if (error)
+             {
+                 [weakSelf.motionManage stopMagnetometerUpdates];
+             }
+             else
+             {
+                 CGFloat x = magnetometerData.magneticField.x;
+                 CGFloat y = magnetometerData.magneticField.y;
+                 CGFloat z = magnetometerData.magneticField.z;
+                 
+                 // 回到主线程
+                 dispatch_async(dispatch_get_main_queue(), ^
+                    {
+                        weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X方向磁力：%.2f", x];
+                        weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y方向磁力：%.2f", y];
+                        weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z方向磁力：%.2f", z];
+                    });
+             }
          }];
     }
 }
@@ -164,62 +186,69 @@
     {
         return;
     }
-    
+
     if (![self.motionManage isDeviceMotionActive])
     {
         __weak typeof (self) weakSelf = self;
         // 获取的数据综合了加速计、陀螺仪、磁力计
         [self.motionManage startDeviceMotionUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error)
          {
-             /*
-                 设备当前的空间方位(包含下面三个欧拉角的值，手机正面朝上放置在水平的桌面上时，三个值都是0)
-                    roll：手机绕 Y 轴旋转的角度值,逆时针绕一周取值依次是：0 -> π/2 -> π（-π）-> -π/2 -> 0
-                    pitch：.....X..............................：0 -> π/2 -> 0 -> -π/2 -> 0
-                    yaw：.......Z..............................：0 -> π/2 -> π（-π）-> -π/2 -> 0
-              */
-             CMAttitude *attitude =  motion.attitude;
-             
-             //陀螺仪
-             CMRotationRate rotationRate = motion.rotationRate;
-             
-             /*
-                  CMCalibratedMagneticField结构体变量, 包括field和accuracy两个字段, 其中field代表X,Y,Z轴上的磁场强度, accuracy则代表磁场强度的精度
-              */
-             CMCalibratedMagneticField magnet = motion.magneticField;
-             
-             //地球重力对该设备在X,Y,Z轴上施加的重力加速度
-             CMAcceleration gravity = motion.gravity;
-             
-             //用户外力对该设备在X,Y,Z轴上施加的重力加速度
-             CMAcceleration userAcceleration = motion.userAcceleration;
-             
-             
-             dispatch_async(dispatch_get_main_queue(), ^
+             if (error)
              {
-#warning 测试以下任一效果时，请将其他注释掉
-//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"roll(绕Y)：%.4f", attitude.roll];
-//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"pitch(绕X)：%.4f", attitude.pitch];
-//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"yaw(绕Z)：%.4f", attitude.yaw];
-                 
-//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"绕X轴旋转的角速度：%.4f", rotationRate.x];
-//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"绕Y轴旋转的角速度：%.4f", rotationRate.y];
-//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"绕Z轴旋转的角速度：%.4f", rotationRate.z];
-                 
-                 //这一组没有数据，为啥？
-                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X方向磁力：%.2f", magnet.field.x];
-                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y方向磁力：%.2f", magnet.field.y];
-                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z方向磁力：%.2f", magnet.field.z];
-                 NSLog(@"磁力精确度：%d",magnet.accuracy);
-                 
-//                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X轴重力加速度：%.2f", gravity.x];
-//                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y轴重力加速度：%.2f", gravity.y];
-//                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z轴重力加速度：%.2f", gravity.z];
-                 
-                 if (userAcceleration.x < -0.5)
+                 [weakSelf.motionManage stopDeviceMotionUpdates];
+             }
+             else
+             {
+                 /*
+                     设备当前的空间方位(包含下面三个欧拉角的值，手机正面朝上放置在水平的桌面上时，三个值都是0)
+                        roll：手机绕 Y 轴旋转的角度值,逆时针绕一周取值依次是：0 -> π/2 -> π（-π）-> -π/2 -> 0
+                        pitch：.....X..............................：0 -> π/2 -> 0 -> -π/2 -> 0
+                        yaw：.......Z..............................：0 -> π/2 -> π（-π）-> -π/2 -> 0
+                  */
+                 CMAttitude *attitude =  motion.attitude;
+             
+                 //陀螺仪
+                 CMRotationRate rotationRate = motion.rotationRate;
+             
+                 /*
+                      CMCalibratedMagneticField结构体变量, 包括field和accuracy两个字段, 其中field代表X,Y,Z轴上的磁场强度, accuracy则代表磁场强度的精度
+                  */
+                 CMCalibratedMagneticField magnet = motion.magneticField;
+             
+                 //地球重力对该设备在X,Y,Z轴上施加的重力加速度
+                 CMAcceleration gravity = motion.gravity;
+             
+                 //用户外力对该设备在X,Y,Z轴上施加的重力加速度
+                 CMAcceleration userAcceleration = motion.userAcceleration;
+             
+             
+                 dispatch_async(dispatch_get_main_queue(), ^
                  {
-                     [weakSelf.navigationController popViewControllerAnimated:YES];
-                 }
-             });
+    #warning 测试以下任一效果时，请将其他注释掉
+    //                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"roll(绕Y)：%.4f", attitude.roll];
+    //                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"pitch(绕X)：%.4f", attitude.pitch];
+    //                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"yaw(绕Z)：%.4f", attitude.yaw];
+                     
+    //                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"绕X轴旋转的角速度：%.4f", rotationRate.x];
+    //                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"绕Y轴旋转的角速度：%.4f", rotationRate.y];
+    //                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"绕Z轴旋转的角速度：%.4f", rotationRate.z];
+                     
+                     //这一组没有数据，为啥？
+                     weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X方向磁力：%.2f", magnet.field.x];
+                     weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y方向磁力：%.2f", magnet.field.y];
+                     weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z方向磁力：%.2f", magnet.field.z];
+                     NSLog(@"磁力精确度：%d",magnet.accuracy);
+                     
+    //                 weakSelf.accelerationXLbl.text = [NSString stringWithFormat:@"X轴重力加速度：%.2f", gravity.x];
+    //                 weakSelf.accelerationYLbl.text = [NSString stringWithFormat:@"Y轴重力加速度：%.2f", gravity.y];
+    //                 weakSelf.accelerationZLbl.text = [NSString stringWithFormat:@"Z轴重力加速度：%.2f", gravity.z];
+                     
+                     if (userAcceleration.x < -0.5)
+                     {
+                         [weakSelf.navigationController popViewControllerAnimated:YES];
+                     }
+                 });
+             }
         }];
     }
 }

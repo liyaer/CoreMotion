@@ -81,7 +81,14 @@
 //            __weak typeof(self) weakSelf = self;
 //            [self.motionManger startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error)
 //            {
-//                [weakSelf setData:accelerometerData];
+//                if (error)
+//                {
+//                    [weakSelf.motionManger stopAccelerometerUpdates];
+//                }
+//                else
+//                {
+//                    [weakSelf setData:accelerometerData];
+//                }
 //            }];
 //        }
 //    }

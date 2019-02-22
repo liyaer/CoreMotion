@@ -10,6 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--TouchIDVC-->
+        <scene sceneID="9e7-Pr-ffS">
+            <objects>
+                <viewController id="JzB-Lb-68v" customClass="TouchIDVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GW0-5h-Fmh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="t2T-4V-X9P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1KL-bb-8Ey" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="790"/>
+        </scene>
+        <!--BarometerVC-->
+        <scene sceneID="LFl-K8-o3r">
+            <objects>
+                <viewController id="zfy-8y-Qs3" customClass="BarometerVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J5j-uX-699">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sTn-zF-4J2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOq-7C-qYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1181" y="823"/>
+        </scene>
         <!--Main MotionVC-->
         <scene sceneID="pYX-IF-FX9">
             <objects>
@@ -56,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZz-Ns-Cdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177.5" y="800"/>
+            <point key="canvasLocation" x="1907" y="791"/>
         </scene>
         <!--AccelerationVC-->
         <scene sceneID="tne-QT-ifu">
@@ -106,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="789"/>
+            <point key="canvasLocation" x="1907" y="63"/>
         </scene>
         <!--Step CountVC-->
         <scene sceneID="pgX-Me-Mpq">
@@ -173,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5F-VO-Fts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="76"/>
+            <point key="canvasLocation" x="1907" y="-641"/>
         </scene>
         <!--Light SensorVC-->
         <scene sceneID="xmh-82-kaw">
@@ -221,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ip-3s-wpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="-630"/>
+            <point key="canvasLocation" x="1157" y="-641"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="JQv-yl-qLt">
@@ -232,7 +262,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYz-jX-Xca">
-                                <rect key="frame" x="114" y="316" width="92" height="30"/>
+                                <rect key="frame" x="114" y="261" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="加速度传感器"/>
                                 <connections>
@@ -240,7 +270,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56e-2P-egX">
-                                <rect key="frame" x="122" y="167" width="77" height="30"/>
+                                <rect key="frame" x="122" y="155" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="光线传感器"/>
                                 <connections>
@@ -256,7 +286,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kN0-1U-QGw">
-                                <rect key="frame" x="137" y="246" width="46" height="30"/>
+                                <rect key="frame" x="137" y="211" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="计步器"/>
                                 <connections>
@@ -264,11 +294,27 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzw-6M-Uea">
-                                <rect key="frame" x="76" y="395" width="169" height="30"/>
+                                <rect key="frame" x="76" y="319" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="加速计，陀螺仪，磁力计"/>
                                 <connections>
                                     <segue destination="9gi-na-Aq8" kind="show" id="GGw-AW-EbR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQ9-99-ZzL">
+                                <rect key="frame" x="145" y="443" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="指纹"/>
+                                <connections>
+                                    <segue destination="JzB-Lb-68v" kind="show" id="A3f-C8-ike"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfm-sK-tni">
+                                <rect key="frame" x="137" y="380" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="气压计"/>
+                                <connections>
+                                    <segue destination="zfy-8y-Qs3" kind="show" id="2ke-f9-Ial"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -303,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7r-AI-LKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1179.375" y="-630"/>
+            <point key="canvasLocation" x="439" y="-641"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cq0-Jj-4tc">
@@ -321,7 +367,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0db-Cq-kP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="439" y="63"/>
+            <point key="canvasLocation" x="-109" y="55"/>
         </scene>
     </scenes>
     <resources>
